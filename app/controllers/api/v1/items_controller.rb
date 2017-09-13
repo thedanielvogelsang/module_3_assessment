@@ -1,4 +1,5 @@
-class Api::V1::ItemsController < ApplicationController
+class Api::V1::ItemsController < ActionController::Base
+  protect_from_forgery with: :null_session
   def index
     render json: LocalService.all_items
   end
