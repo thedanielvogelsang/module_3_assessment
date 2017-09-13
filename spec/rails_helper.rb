@@ -6,13 +6,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
-require 'webmock/rspec'
-require 'vcr'
 
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/cassettes" #store cassettes in this folder
-  config.hook_into :webmock #use webmock to grab traffic from api
-end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

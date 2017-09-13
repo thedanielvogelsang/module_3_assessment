@@ -28,6 +28,4 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'vcr'
-  gem 'webmock'
 end
