@@ -22,6 +22,7 @@ group :development, :test do
   gem "minitest-rails-capybara"
   gem "pry", :require => "pry"
   gem 'byebug'
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails'
