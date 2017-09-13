@@ -39,11 +39,26 @@ describe 'items api endpoints' do
   end
   it do
     # When I send a DELETE request to `/api/v1/items/1`
+    expect(Item.count).to eq(4)
+    delete '/api/v1/items/1'
     # I receive a 204 JSON response if the record is successfully deleted
+    expect(response).to be_success
+    expect(Item.count).to eq(3)
   end
   it do
+    expect(Item.count).to eq(4)
+    post '/api/v1/items?name=Daniel&description=TuringSchoolStudent&image_url=imagetext'
     # When I send a POST request to `/api/v1/items` with a name, description, and image_url
+    expect(response).to be_success
+    expect(Item.count).to eq(5)
     # I receive a 201 JSON  response if the record is successfully created
     # And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+    item = JSON.parse(response.body)['item']
+    expect(item['id']).to be_truthy
+    expect(item['name']).to be_truthy
+    expect(item['description']).to be_truthy
+    expect(item['image_url']).to be_truthy
+    expect(item['created_at']).to be_nil
+    expect(item['updated_at']).to be_nil
   end
 end
