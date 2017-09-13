@@ -13,19 +13,21 @@ describe 'items api endpoints' do
     expect(items.count).to eq(4)
     # And each item has an id, name, description, and image_url but not the created_at or updated_at
     item = items.first
-    expect(item.id).to be_truthy
-    expect(item.name).to be_truthy
-    expect(item.description).to be_truthy
-    expect(item.image_url).to be_truthy
+    expect(item['id']).to be_truthy
+    expect(item['name']).to be_truthy
+    expect(item['description']).to be_truthy
+    expect(item['image_url']).to be_truthy
+    expect(item['created_at']).to be_nil
+    expect(item['updated_at']).to be_nil
   end
   it 'returns a specific item given id' do
     # When I send a GET request to `/api/v1/items/1`
     item = @items.first
-    id = items.id
+    id = item.id
     expect(id).to eq(1)
-    name = items.name
-    description = items.description
-    image_url = items.image_url
+    name = item.name
+    description = item.description
+    image_url = item.image_url
     get '/api/v1/items/1'
     expect(response).to be_success
     item = JSON.parse(response.body)
