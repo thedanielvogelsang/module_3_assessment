@@ -1,14 +1,10 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    hash_items = Item.all
-    items = hash_items.map{|item| ItemDecorator.new(item)}
-    render json: items
+    render json: LocalService.all_items
   end
 
   def show
-    hash_item = Item.find(params[:id])
-    item = ItemDecorator.new(hash_item)
-    render json: item
+    render json: LocalService.item_by_id(params[:id])
   end
 
   def destroy
@@ -18,14 +14,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(create_params)
-    if item.save
-      item = ItemDecorator.new(item)
-      payload = {success: "Successfully created!", item: item}
-      render json: payload, status: 201
-    else
-      render json: {error: "Unsuccessful item creation"}, status: 400
-    end
+    render json: LocalService.create_item(create_params), status: 201
   end
 
   private
