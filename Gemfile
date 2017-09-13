@@ -13,6 +13,7 @@ gem "therubyracer"
 gem "less-rails-bootstrap"
 gem 'faraday'
 gem 'figaro'
+gem 'rails-api'
 
 group :development do
   gem "spring"
