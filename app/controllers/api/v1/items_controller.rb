@@ -1,5 +1,6 @@
 class Api::V1::ItemsController < ActionController::Base
   protect_from_forgery with: :null_session
+
   def index
     render json: LocalService.all_items
   end
@@ -19,9 +20,8 @@ class Api::V1::ItemsController < ActionController::Base
   end
 
   private
-
-      def create_params
-        params.permit(:name, :description, :image_url)
-      end
-
+  
+    def create_params
+      params.permit(:name, :description, :image_url)
+    end
 end
