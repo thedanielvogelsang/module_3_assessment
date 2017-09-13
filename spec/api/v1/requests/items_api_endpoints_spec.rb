@@ -27,12 +27,15 @@ describe 'items api endpoints' do
     expect(id).to eq(1)
     name = item.name
     description = item.description
-    image_url = item.image_url
+    image = item.image_url
     get '/api/v1/items/1'
     expect(response).to be_success
     item = JSON.parse(response.body)
     # I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+    expect(item['id']).to eq(id)
     expect(item['name']).to eq(name)
+    expect(item['description']).to eq(description)
+    expect(item['image_url']).to eq(image)
   end
   it do
     # When I send a DELETE request to `/api/v1/items/1`
