@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :eduardo do
-    name "MyString"
-    description "MyString"
-    image_url "MyString"
+  factory :item do
+    name "Item Name"
+    description "lengthy description"
+    image_url "image@image.com"
   end
 end
