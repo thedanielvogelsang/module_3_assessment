@@ -18,7 +18,7 @@ class Api::V1::ItemsController < ActionController::Base
   def create
     item = Item.create(create_params)
     if item.save
-      render json: Item.create(create_params), status: 201
+      render json: Item.last, status: 201
     elsif
       render json: {error: "unsuccessful creation. try again!"}, status: :no_content
     end
