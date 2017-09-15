@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @stores = Store.find_stores_by_location(params[:location]), serializer: StoreSerializer
+    @stores = Store.find_stores_by_location(params[:location])
     @total = Store.find_total_nearby_stores(params[:location])
     @location = params[:location]
   end

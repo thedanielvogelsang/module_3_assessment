@@ -10,6 +10,7 @@ describe 'items api endpoints' do
     expect(response).to be_success
     # I receive a 200 JSON response containing all items
     items = JSON.parse(response.body)
+    byebug
     expect(items.count).to eq(4)
     # And each item has an id, name, description, and image_url but not the created_at or updated_at
     item = items.first
@@ -17,8 +18,10 @@ describe 'items api endpoints' do
     expect(item['name']).to be_truthy
     expect(item['description']).to be_truthy
     expect(item['image_url']).to be_truthy
-    expect(item['created_at']).to be_nil
-    expect(item['updated_at']).to be_nil
+    # expect(item['created_at']).to be_nil
+    # expect(item['updated_at']).to be_nil
+    expect(item).not_to have_key 'created_at'
+    expect(item).not_to have_key 'updated_at'
   end
   it 'returns a specific item given id' do
     # When I send a GET request to `/api/v1/items/1`
