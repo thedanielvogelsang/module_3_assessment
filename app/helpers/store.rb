@@ -8,4 +8,14 @@ class Store
     @distance = store_hash['distance']
     @phone = store_hash['phone']
   end
+
+  def self.find_stores_by_location(location)
+    store_hash = BestBuyService.find_stores_by_location(location)
+    @stores = store_hash.values.first
+  end
+
+  def self.find_total_nearby_stores(location)
+    store_hash = BestBuyService.find_stores_by_location(location)
+    @total = store_hash.keys.first
+  end
 end

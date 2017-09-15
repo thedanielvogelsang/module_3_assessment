@@ -7,12 +7,12 @@ class BestBuyService
     end
   end
 
-  def self.find_stores_by_zip(zipcode)
-    new.find_stores_by_zip(zipcode)
+  def self.find_stores_by_location(location)
+    new.find_stores_by_location(location)
   end
 
-  def find_stores_by_zip(zipcode)
-    response = Faraday.get("https://api.bestbuy.com/v1/stores(area(#{zipcode},25))?format=json&show=storeId,storeType,name,city,distance,phone&apiKey=#{ENV['x-api-key']}")
+  def find_stores_by_location(location)
+    response = @conn.get("/v1/stores(area(#{location},25))?format=json&show=storeId,storeType,name,city,distance,phone&apiKey=#{ENV['x-api-key']}")
     stores_json = parse(response)
     stores = stores_json['stores'].map{|store| Store.new(store)}
     hash = {stores_json['total'] => stores}

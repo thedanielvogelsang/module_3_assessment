@@ -1,8 +1,7 @@
 class SearchController < ApplicationController
   def index
-    @zipcode = params[:zipcode]
-    store_hash = BestBuyService.find_stores_by_zip(@zipcode)
-    @stores = store_hash.values.first
-    @total = store_hash.keys.first
+    @stores = Store.find_stores_by_location(params[:location]), serializer: StoreSerializer
+    @total = Store.find_total_nearby_stores(params[:location])
+    @location = params[:location]
   end
 end

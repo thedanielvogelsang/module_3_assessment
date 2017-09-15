@@ -6,8 +6,8 @@ RSpec.feature 'user searches stores by zipcode' do
       visit "/"
 # And I fill in a search box with "80202" and click "search"
       zipcode = "80202"
-      expect(page).to have_css('#zipcode')
-      page.fill_in 'zipcode', with: zipcode
+      expect(page).to have_css('#location')
+      page.fill_in 'location', with: zipcode
       click_on('search')
 # Then my current path should be "/search" (ignoring params)
       expect(current_path).to eq('/search')
