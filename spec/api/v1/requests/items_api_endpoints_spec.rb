@@ -17,10 +17,8 @@ describe 'items api endpoints' do
     expect(item['name']).to be_truthy
     expect(item['description']).to be_truthy
     expect(item['image_url']).to be_truthy
-    # expect(item['created_at']).to be_nil
-    # expect(item['updated_at']).to be_nil
-    # expect(item).not_to have_key 'created_at'
-    # expect(item).not_to have_key 'updated_at'
+    expect(item['created_at']).to be_nil
+    expect(item['updated_at']).to be_nil
   end
   it 'returns a specific item given id' do
     # When I send a GET request to `/api/v1/items/1`
@@ -38,6 +36,8 @@ describe 'items api endpoints' do
     expect(item['name']).to eq(name)
     expect(item['description']).to eq(description)
     expect(item['image_url']).to eq(image)
+    expect(item).not_to have_key 'created_at'
+    expect(item).not_to have_key 'updated_at'
   end
   it 'can delete an item' do
     # When I send a DELETE request to `/api/v1/items/1`

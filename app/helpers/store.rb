@@ -1,5 +1,5 @@
 class Store
-  attr_reader :name, :city, :distance, :phone, :type
+  attr_reader :name, :city, :distance, :phone, :type, :id
   def initialize(store_hash)
     @id = store_hash['storeId']
     @type = store_hash['storeType']
