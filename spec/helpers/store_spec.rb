@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe Store, type: :model do
   context 'attr readers' do
     it 'initializes with a hash' do
